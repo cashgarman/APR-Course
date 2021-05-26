@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GrabbableObject : MonoBehaviour
@@ -8,7 +5,7 @@ public class GrabbableObject : MonoBehaviour
     public Color hoverColour;
 
     private Material material;
-    private Rigidbody rigidBody;
+    protected Rigidbody rigidBody;
     private Color initialColour;
 
     void Start()
@@ -21,19 +18,19 @@ public class GrabbableObject : MonoBehaviour
         initialColour = material.color;
     }
     
-    public void OnHoverStart()
+    public virtual void OnHoverStart()
     {
         // Change the colour of the object to the hover colour
         material.color = hoverColour;
     }
 
-    public void OnHoverEnd()
+    public virtual void OnHoverEnd()
     {
         // Change the colour of the object back to the normal colour
         material.color = initialColour;
     }
 
-    public void OnGrabbed(Grabber hand)
+    public virtual void OnGrabbed(Grabber hand)
     {
         // Parent this object to hand that grabbed it
         transform.SetParent(hand.transform);
@@ -45,7 +42,7 @@ public class GrabbableObject : MonoBehaviour
         rigidBody.isKinematic = true;
     }
 
-    public void OnDropped()
+    public virtual void OnDropped()
     {
         // Unparent this object from everything 
         transform.SetParent(null);
