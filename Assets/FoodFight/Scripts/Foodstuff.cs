@@ -1,8 +1,6 @@
-public class Foodstuff : GrabbableObject
+public class Foodstuff : ThrowableObject
 {
-    public float throwForce;
-
-    private Grabber pickedUpHand;
+    public FoodFightGame game;
 
     public override void OnHoverStart()
     {
@@ -14,19 +12,11 @@ public class Foodstuff : GrabbableObject
         // Don't do anything, we don't want hover effects
     }
 
-    public override void OnGrabbed(Grabber hand)
-    {
-        base.OnGrabbed(hand);
-
-        // Store the hand that picked up the food
-        pickedUpHand = hand;
-    }
-
     public override void OnDropped()
     {
         base.OnDropped();
 
-        // Throw the food really hard in the direction of the hand
-        rigidBody.AddForce(pickedUpHand.transform.forward * throwForce);
+        // Let the game know the food was thrown
+        game.OnFoodThrown();
     }
 }

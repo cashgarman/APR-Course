@@ -8,7 +8,7 @@ public class GrabbableObject : MonoBehaviour
     protected Rigidbody rigidBody;
     private Color initialColour;
 
-    void Start()
+    protected virtual void Start()
     {
         // Cache the object's material and rigid body
         material = GetComponent<Renderer>().material;
