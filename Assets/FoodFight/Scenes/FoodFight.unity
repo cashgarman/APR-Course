@@ -1118,7 +1118,7 @@ MonoBehaviour:
   - {fileID: 8558660928550065033, guid: d400f3d578c9f6a4faf687a6b53c44ed, type: 3}
   - {fileID: 4101545628812377999, guid: cca11d55886115548bffc89beb0cad0c, type: 3}
   scoreText: {fileID: 1861359059}
-  gameDuration: 5
+  gameDuration: 15
   countdownText: {fileID: 268359035}
   playAgainPrompt: {fileID: 1887065539}
   leftTriggerName: XRI_Left_TriggerButton

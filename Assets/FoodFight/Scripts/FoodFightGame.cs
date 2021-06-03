@@ -30,10 +30,9 @@ public class FoodFightGame : MonoBehaviour
         // Spawn some food
         SpawnFood();
 
-        UpdateUI();
-
         // Start the game countdown
         countdown = gameDuration;
+        UpdateUI();
     }
 
     public void OnTargetHit()
