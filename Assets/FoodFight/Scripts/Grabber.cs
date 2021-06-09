@@ -51,9 +51,11 @@ public class Grabber : MonoBehaviour
             if(highlightedObject != null)
             {
                 // Grab the object
-                highlightedObject.OnGrabbed(this);
-                grabbedObject = highlightedObject;
-                highlightedObject = null;
+                if (highlightedObject.OnGrabbed(this))
+                {
+                    grabbedObject = highlightedObject;
+                    highlightedObject = null;
+                }
             }
         }
 

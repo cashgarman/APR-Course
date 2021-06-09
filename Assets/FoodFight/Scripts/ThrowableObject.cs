@@ -17,11 +17,17 @@ public class ThrowableObject : GrabbableObject
         prevPosition = transform.position;
     }
 
-    public override void OnGrabbed(Grabber hand)
+    public override bool OnGrabbed(Grabber hand)
     {
+        // Make sure the object isn't already being held by another hand
+        if (joint != null)
+            return false;
+
         // Add a fixed joint between this object's rigid body and the hand's rigid body
         joint = gameObject.AddComponent<FixedJoint>();
         joint.connectedBody = hand.GetComponent<Rigidbody>();
+
+        return true;
     }
 
     public override void OnDropped()

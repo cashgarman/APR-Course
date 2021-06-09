@@ -16,7 +16,8 @@ public class GrabbableObject : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
 
         // Remember the initial colour of this object
-        initialColour = material.color;
+        if (highlightable)
+            initialColour = material.color;
     }
     
     public virtual void OnHoverStart()
@@ -37,7 +38,7 @@ public class GrabbableObject : MonoBehaviour
         material.color = initialColour;
     }
 
-    public virtual void OnGrabbed(Grabber hand)
+    public virtual bool OnGrabbed(Grabber hand)
     {
         // Parent this object to hand that grabbed it
         transform.SetParent(hand.transform);
@@ -47,6 +48,8 @@ public class GrabbableObject : MonoBehaviour
 
         // Make this object's rigid body kinematic
         rigidBody.isKinematic = true;
+
+        return true;
     }
 
     public virtual void OnDropped()
