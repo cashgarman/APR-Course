@@ -7,6 +7,7 @@ public class GrabbableObject : MonoBehaviour
     private Material material;
     protected Rigidbody rigidBody;
     private Color initialColour;
+    public bool highlightable = true;
 
     protected virtual void Start()
     {
@@ -20,12 +21,18 @@ public class GrabbableObject : MonoBehaviour
     
     public virtual void OnHoverStart()
     {
+        if (!highlightable)
+            return;
+
         // Change the colour of the object to the hover colour
         material.color = hoverColour;
     }
 
     public virtual void OnHoverEnd()
     {
+        if (!highlightable)
+            return;
+
         // Change the colour of the object back to the normal colour
         material.color = initialColour;
     }
@@ -52,5 +59,13 @@ public class GrabbableObject : MonoBehaviour
 
         // Make this object's rigid body non-kinematic
         rigidBody.isKinematic = false;
+    }
+
+    public virtual void OnTriggerStart()
+    {
+    }
+
+    public virtual void OnTriggerEnd()
+    {
     }
 }

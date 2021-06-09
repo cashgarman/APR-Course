@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class ThrowableObject : GrabbableObject
 {
-    public int maxNumSamples;
-    public float throwMultiplier;
+    public int maxNumSamples = 10;
+    public float throwMultiplier = 150f;
 
     private FixedJoint joint;
     private Vector3 prevPosition;

@@ -40,8 +40,8 @@ public class VRLocomotion : MonoBehaviour
 
     private void HandleTeleporting()
     {
-        // If a raycast from the hand hits anything
-        if(Physics.Raycast(transform.position, transform.forward, out var hit, teleportRange))
+        // If the teleport button is held and a raycast from the hand hits anything
+        if(Input.GetButton($"XRI_{handedness}_PrimaryButton") && Physics.Raycast(transform.position, transform.forward, out var hit, teleportRange))
         {
             // Show the beam and reticule
             teleportBeam.enabled = true;

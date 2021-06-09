@@ -3,6 +3,7 @@ using UnityEngine;
 public class Grabber : MonoBehaviour
 {
     public string gripInputName;
+    public string triggerInputName;
 
     private Animator animator;
     private GrabbableObject grabbedObject;
@@ -69,6 +70,20 @@ public class Grabber : MonoBehaviour
                 grabbedObject.OnDropped();
                 grabbedObject = null;
             }
+        }
+
+        // If the trigger is pressed and an object is being held
+        if(Input.GetButtonDown(triggerInputName) && grabbedObject != null)
+        {
+            // Let the held object know the trigger started being held
+            grabbedObject.OnTriggerStart();
+        }
+
+        // If the trigger is released and an object is being held
+        if (Input.GetButtonUp(triggerInputName) && grabbedObject != null)
+        {
+            // Let the held object know the trigger stopped being held
+            grabbedObject.OnTriggerEnd();
         }
     }
 }
