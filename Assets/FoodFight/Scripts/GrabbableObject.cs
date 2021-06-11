@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GrabbableObject : MonoBehaviour
+public class GrabbableObject : InteractiveObject
 {
     public Color hoverColour;
 
@@ -20,7 +20,7 @@ public class GrabbableObject : MonoBehaviour
             initialColour = material.color;
     }
     
-    public virtual void OnHoverStart()
+    public override void OnTouchStart()
     {
         if (!highlightable)
             return;
@@ -29,7 +29,7 @@ public class GrabbableObject : MonoBehaviour
         material.color = hoverColour;
     }
 
-    public virtual void OnHoverEnd()
+    public override void OnTouchEnd()
     {
         if (!highlightable)
             return;
@@ -38,7 +38,7 @@ public class GrabbableObject : MonoBehaviour
         material.color = initialColour;
     }
 
-    public virtual bool OnGrabbed(Grabber hand)
+    public override bool OnGrabbed(Grabber hand)
     {
         // Parent this object to hand that grabbed it
         transform.SetParent(hand.transform);
@@ -52,7 +52,7 @@ public class GrabbableObject : MonoBehaviour
         return true;
     }
 
-    public virtual void OnDropped()
+    public override void OnDropped()
     {
         // Unparent this object from everything 
         transform.SetParent(null);
@@ -62,13 +62,5 @@ public class GrabbableObject : MonoBehaviour
 
         // Make this object's rigid body non-kinematic
         rigidBody.isKinematic = false;
-    }
-
-    public virtual void OnTriggerStart()
-    {
-    }
-
-    public virtual void OnTriggerEnd()
-    {
     }
 }

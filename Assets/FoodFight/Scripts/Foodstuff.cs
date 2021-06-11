@@ -2,12 +2,12 @@ public class Foodstuff : ThrowableObject
 {
     public FoodFightGame game;
 
-    public override void OnHoverStart()
+    public override void OnTouchStart()
     {
         // Don't do anything, we don't want hover effects
     }
 
-    public override void OnHoverEnd()
+    public override void OnTouchEnd()
     {
         // Don't do anything, we don't want hover effects
     }

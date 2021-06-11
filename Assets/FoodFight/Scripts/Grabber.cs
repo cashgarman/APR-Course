@@ -6,8 +6,8 @@ public class Grabber : MonoBehaviour
     public string triggerInputName;
 
     private Animator animator;
-    private GrabbableObject grabbedObject;
-    private GrabbableObject highlightedObject;
+    private InteractiveObject grabbedObject;
+    private InteractiveObject highlightedObject;
 
     void Start()
     {
@@ -18,11 +18,11 @@ public class Grabber : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Check if the other object is a grabbable object
-        GrabbableObject grabbableObject = other.GetComponent<GrabbableObject>();
+        InteractiveObject grabbableObject = other.GetComponent<InteractiveObject>();
         if(grabbableObject != null)
         {
             // Highlight the grabbable object
-            grabbableObject.OnHoverStart();
+            grabbableObject.OnTouchStart();
             highlightedObject = grabbableObject;
         }
     }
@@ -30,11 +30,11 @@ public class Grabber : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // Check if the other object is a grabbable object
-        GrabbableObject grabbableObject = other.GetComponent<GrabbableObject>();
+        InteractiveObject grabbableObject = other.GetComponent<InteractiveObject>();
         if (grabbableObject != null)
         {
             // Unhighlight the grabbable object
-            grabbableObject.OnHoverEnd();
+            grabbableObject.OnTouchEnd();
             highlightedObject = null;
         }
     }
